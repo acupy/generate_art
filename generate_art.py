@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-import time
+import time, os
 from PIL import Image
 import numpy as np
 
@@ -16,8 +16,8 @@ from scipy.misc import imsave
 # Note that the content image we're working with is not particularly high quality,
 # but the output we'll arrive at the end of this process still looks really good.
 
-height = 512
-width = 512
+height = 64
+width = 64
 
 content_image_path = 'images/hugo.jpg'
 content_image = Image.open(content_image_path)
@@ -219,4 +219,8 @@ x[:, :, 2] += content_average_B
 x = np.clip(x, 0, 255).astype('uint8')
 
 img = Image.fromarray(x)
-img.save('output/my_image.jpg', 'JPEG')
+
+if not os.path.exists('output'):
+    os.makedirs('output')
+
+img.save('./output/my_image.jpg', 'JPEG')
