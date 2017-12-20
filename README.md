@@ -10,7 +10,7 @@ docker build -t generate_art .
 docker run \
 -it \
 --rm \
--v  `pwd`/output:/generate_art/output \
+-v `pwd`/app:/generate_art/app \
 generate_art \
-bash -c "cd generate_art;python generate_art.py"
+bash -c "cd generate_art/app;python ./generate_art.py"
 ```
